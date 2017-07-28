@@ -1,0 +1,137 @@
+#!/bin/bash
+# A menu driven shell script sample template 
+## ----------------------------------
+# Step #1: Define variables
+# ----------------------------------
+EDITOR=vim
+PASSWD=/etc/passwd
+RED='\033[0;41;30m'
+STD='\033[0;0;39m'
+RPCUSERNAME= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+RPCPASSWORD= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+CONFIGPATH='/etc/multipool.cfg'
+WEBSITEPORT='4565'
+BTCUN=''
+BTCPW=''
+LTCUN=''
+LTCPW=''
+FTCUN=''
+FTCPW=''
+DOGEUN=''
+DOGEPW=''
+# ----------------------------------
+# Step #2: User defined function
+# ----------------------------------
+pause(){
+  read -p "Press [Enter] key to continue..." fackEnterKey
+}
+
+resetcred(){
+	echo "resetcred() called"
+	RPCUSERNAME= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	RPCPASSWORD= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+        pause
+}
+ 
+# do something in two()
+changewebport(){
+	echo "changewebport() called"
+        pause
+}
+# do something in two()
+changepath(){
+	echo "two() called"
+        pause
+}
+# do something in two()
+addbitcoin(){
+	echo "two() called"
+	BTCUN= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	BTCPW= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	BTCRPC=
+        pause
+}
+# do something in two()
+addlitecoin(){
+	echo "two() called"
+	LTCUN= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	LTCPW= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	LTCRPC=
+        pause
+}
+# do something in two()
+addfeathercoin(){
+	echo "two() called"
+	FTCUN= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	FTCPW= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	FTCRPC=
+        pause
+}
+# do something in two()
+adddogecoin(){
+	echo "two() called"
+	DOGEUN= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	DOGEPW= cat /dev/urandom | tr -dc 'a-zA-Z0-9-_!@#$%^&*()_+{}|:<>?=' | fold -w 12 | head -n 4
+	DOGERPC=
+        pause
+}
+ 
+# function to display menus
+show_menus() {
+	clear
+	echo "~~~~~~~~~~~~~~~~~~~~~"	
+	echo " P O O L C O N F - M E N U"
+	echo "~~~~~~~~~~~~~~~~~~~~~"
+	echo "RPCUSERNAME :${RPCUSERNAME}"
+	echo "RPCPASSWORD :${RPCPASSWORD}"
+	echo "WEBSITEPORT :${WEBSITEPORT}"
+	echo "CONFIGPATH :${CONFIGPATH}"
+	echo "~~~~~~~~~~~~~~~~~~~~~"
+	echo "BTC :${BTCUN} / ${BTCPW}"
+	echo "LTC :${LTCUN} / ${LTCPW}"
+	echo "FTC :${FTCUN} / ${FTCPW}"
+	echo "DOGE :${DOGEUN} / ${DOGEPW}"
+	echo "~~~~~~~~~~~~~~~~~~~~~"	
+	echo "1. Reset RPC username & password"
+	echo "2. Change website port"
+	echo "3. Change config path"
+	echo "4. Add / Change Bitcoin"
+	echo "5. Add / Change Litecoin"
+	echo "6. Add / Change Feathercoin"
+	echo "7. Add / Change Dogecoin"
+	echo "8. Save & Exit"
+}
+# read input from the keyboard and take a action
+# invoke the one() when the user select 1 from the menu option.
+# invoke the two() when the user select 2 from the menu option.
+# Exit when user the user select 3 form the menu option.
+read_options(){
+	local choice
+	read -p "Enter choice [ 1 - 8] " choice
+	case $choice in
+		1) resetcred ;;
+		2) changewebport ;;
+		3) changepath ;;
+		4) addbitcoin ;;
+		5) addlitecoin ;;
+		6) addfeathercoin ;;
+		7) adddogecoin ;;
+		8) exit 0;;
+		*) echo -e "${RED}Error...${STD}" && sleep 2
+	esac
+}
+ 
+# ----------------------------------------------
+# Step #3: Trap CTRL+C, CTRL+Z and quit singles
+# ----------------------------------------------
+trap '' SIGINT SIGQUIT SIGTSTP
+ 
+# -----------------------------------
+# Step #4: Main logic - infinite loop
+# ------------------------------------
+while true
+do
+ 
+	show_menus
+	read_options
+done
