@@ -12,21 +12,21 @@ if [ $exitstatus = 0 ]; then
   "Dogecoin" "" off \
 
 # If "bitcoin" is selected, run this function:
-function bitcoin {
-echo "You chose bitcoin"
+function Bitcoin {
+echo "You chose Bitcoin"
 }
 
 # If "litecoin" is selected, run this function:
-function litecoin {
-echo "You chose litecoin"
+function Litecoin {
+echo "You chose Litecoin"
 }
 
 # If "feathercoin" is selected, run this function:
-function feathercoin {
-echo "You chose feathercoin"
+function Feathercoin {
+echo "You chose Feathercoin"
 }
 
 # If "dogecoin" is selected, run this function:
-function dogecoin {
-echo "You chose dogecoin"
+function Gogecoin {
+echo "You chose Dogecoin"
 }
