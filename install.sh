@@ -13,8 +13,12 @@ echo "You have chosen Dogecoin"
 function FTH {
 echo "You have chosen Feathercoin"
 }
+function Port {
+echo "You have chosen to change default webport"
+}
 
-whiptail --title "Test" --checklist --separate-output "Choose:" 20 78 15 \
+whiptail --title "Options:" --checklist --separate-output "Please choose:" 20 78 15 \
+Port "change default port from 8081" off \
 BTC "bitcoin" off \
 LTC "litecoin" off \
 DOGE "dogecoin" off \
@@ -23,6 +27,8 @@ FTH "feathercoin" off 2>results
 while read choice
 do
         case $choice in
+                Port) Port
+                ;;
                 BTC) BTC
                 ;;
                 LTC) LTC
