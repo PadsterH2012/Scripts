@@ -1,32 +1,37 @@
-#! /bin/bash
-whiptail --title "Configuration" --yesno --defaultno "Do you require a new configuration." 8 78
-exitstatus=$?
-if [ $exitstatus = 0 ]; then
-    status="0"
-    while [ "$status" -eq 0 ]  
-    do
-        whiptail --title "Config" --checklist "Choose:" 20 78 15 \
-  "Bitcoin" "" on \
-  "Litecoin" "" off \
-  "Feathercoin" "" off \
-  "Dogecoin" "" off \
+#!/bin/bash
 
-# If "bitcoin" is selected, run this function:
-function Bitcoin {
-echo "You chose Bitcoin"
+#clear
+function BTC {
+echo "You have chosen Bitcoin"
+}
+function LTC {
+echo "You have chosen Litecoin"
+}
+function DOGE {
+echo "You have chosen Dogecoin"
+}
+function FTH {
+echo "You have chosen Feathercoin"
 }
 
-# If "litecoin" is selected, run this function:
-function Litecoin {
-echo "You chose Litecoin"
-}
+whiptail --title "Test" --checklist --separate-output "Choose:" 20 78 15 \
+BTC "bitcoin" off \
+LTC "litecoin" off \
+DOGE "dogecoin" off \
+FTH "feathercoin" off 2>results
 
-# If "feathercoin" is selected, run this function:
-function Feathercoin {
-echo "You chose Feathercoin"
-}
-
-# If "dogecoin" is selected, run this function:
-function Gogecoin {
-echo "You chose Dogecoin"
-}
+while read choice
+do
+        case $choice in
+                BTC) BTC
+                ;;
+                LTC) LTC
+                ;;
+                DOGE) DOGE
+                ;;
+                FTH) FTH
+                ;;
+                *)
+                ;;
+        esac
+done < results
