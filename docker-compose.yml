@@ -8,7 +8,7 @@ services:
       - redis
       - mysql
     ports:
-      - 80:8081
+      - 8081:8081
     
   redis:
     image: 'sameersbn/redis:latest'
@@ -26,7 +26,6 @@ services:
     volumes:
       - /mnt/ShareOne/Docker/Projects/1:/bitnami
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_USER=my_user
       - MYSQL_PASSWORD=my_password
       - MYSQL_DATABASE=dbname
